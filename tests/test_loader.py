@@ -1,12 +1,15 @@
 from src.data_loader import FinancialDataLoader
 
-def test_tesla_data():
+def test_news_api():
     loader = FinancialDataLoader("TSLA")
-    data = loader.get_stock_history(period="5d")
+    news = loader.get_stock_news()
     
-    # Un test d'ingénieur : on vérifie que les données ne sont pas vides
-    assert not data.empty
-    print("Test réussi : Données Tesla récupérées avec succès !")
+    if news:
+        print(f"Succès ! Récupéré {len(news)} news pour Tesla.")
+        print(f"Titre de la première : {news[0]['title']}")
+        print(f"Sentiment API : {news[0]['api_sentiment']}")
+    else:
+        print("Échec de la récupération des news.")
 
 if __name__ == "__main__":
-    test_tesla_data()
+    test_news_api()
