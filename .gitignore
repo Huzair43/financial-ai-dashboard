@@ -1,0 +1,18 @@
+# Python - Fichiers compilés et caches
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Data - On ne push JAMAIS de gros datasets sur Git
+data/*.csv
+data/*.xlsx
+data/*.json
+
+# Notebooks - Checkpoints de sauvegarde automatique
+.ipynb_checkpoints/
+
+# Environnement et Secrets
+.env
+.DS_Store
