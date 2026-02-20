@@ -11,9 +11,16 @@ class FinancialDataLoader:
         self.stock = yf.Ticker(ticker)
 
     def get_stock_history(self, period="max"):
-        """Récupère l'historique des prix."""
-        data = self.stock.history(period=period)
-        return data.reset_index()
+        """Récupère l'historique des prix avec gestion d'erreur."""
+        try:
+            data = self.stock.history(period=period)
+            if data.empty:
+                print(f"Warning: No data found for {self.ticker_symbol}")
+            return data.reset_index()
+        except Exception as e:
+            print(f"Erreur lors de l'appel à yfinance: {e}")
+            # En cas d'erreur, on retourne un DataFrame vide au lieu de faire planter le programme
+            return pd.DataFrame()
 
     def get_revenue_data(self, url: str):
         """Scrape les revenus depuis une page HTML (ex: Macrotrends)."""
