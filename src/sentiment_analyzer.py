@@ -2,6 +2,7 @@ from transformers import pipeline
 
 class SentimentAnalyzer:
     def __init__(self):
+        self.version = "finbert-v1"  # version du modèle pour logging
         print("--- Chargement de FinBERT (Modèle IA spécialisé finance) ---")
         # On utilise le modèle ProsusAI/finbert, la référence en NLP financier
         self.analyzer = pipeline("sentiment-analysis", model="ProsusAI/finbert")

@@ -1,15 +1,14 @@
-from src.data_loader import FinancialDataLoader
+from src.logger import PredictionLogger
 
-def test_news_api():
-    loader = FinancialDataLoader("TSLA")
-    news = loader.get_stock_news()
-    
-    if news:
-        print(f"Succès ! Récupéré {len(news)} news pour Tesla.")
-        print(f"Titre de la première : {news[0]['title']}")
-        print(f"Sentiment API : {news[0]['api_sentiment']}")
-    else:
-        print("Échec de la récupération des news.")
-
-if __name__ == "__main__":
-    test_news_api()
+def test_logger():
+    logger = PredictionLogger()
+    logger.log(
+        ticker="TSLA",
+        text="Test news",
+        api_sentiment="neutral",
+        api_score=0.5,
+        model_label="neutral",
+        model_score=0.7,
+        model_version="finbert-v1"
+    )
+    print("✅ Logger fonctionne")
